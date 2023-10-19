@@ -7,3 +7,5 @@ MyFirstDjangoProject/MyFirstDjangoProject/__pycache__/**
 
 MyFirstDjangoProject/user/migrations/**
 MyFirstDjangoProject/user/__pycache__/**
+
+MyFirstDjangoProject/model/__pycache__/**

@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from .models import Account, Profile
+from .models.account import Account
+from .models.profile import Profile
 
 # Register your models here.
 
-admin.register(Account)
+admin.site.register(Account)
 
-admin.register(Profile)
+admin.site.register(Profile)
