@@ -1,0 +1,15 @@
+MyFirstDjangoProject/user/migrations/0001_initial.py
+MyFirstDjangoProject/user/migrations/0002_remove_profile_account_delete_account_delete_profile.py
+MyFirstDjangoProject/user/migrations/0003_initial.py
+MyFirstDjangoProject/user/migrations/__pycache__/__init__.cpython-311.pyc
+MyFirstDjangoProject/user/migrations/__pycache__/0001_initial.cpython-311.pyc
+MyFirstDjangoProject/user/migrations/__pycache__/0002_remove_profile_account_delete_account_delete_profile.cpython-311.pyc
+MyFirstDjangoProject/MyFirstDjangoProject/__pycache__/__init__.cpython-311.pyc
+MyFirstDjangoProject/MyFirstDjangoProject/__pycache__/settings.cpython-311.pyc
+MyFirstDjangoProject/MyFirstDjangoProject/__pycache__/urls.cpython-311.pyc
+MyFirstDjangoProject/user/__pycache__/__init__.cpython-311.pyc
+MyFirstDjangoProject/user/__pycache__/admin.cpython-311.pyc
+MyFirstDjangoProject/user/__pycache__/apps.cpython-311.pyc
+MyFirstDjangoProject/user/models/__pycache__/__init__.cpython-311.pyc
+MyFirstDjangoProject/user/models/__pycache__/account.cpython-311.pyc
+MyFirstDjangoProject/user/models/__pycache__/profile.cpython-311.pyc
