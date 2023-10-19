@@ -9,3 +9,4 @@ MyFirstDjangoProject/user/migrations/**
 MyFirstDjangoProject/user/__pycache__/**
 
 MyFirstDjangoProject/model/__pycache__/**
+MyFirstDjangoProject/user/models/__pycache__/**
