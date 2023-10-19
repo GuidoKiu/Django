@@ -19,12 +19,15 @@ from django.urls import include, path
 
 from rest_framework.routers import DefaultRouter
 from user.views import ProfileViewSet
+from user.views import AccountViewSet
 
 router = DefaultRouter()
 router.register(r'profiles', ProfileViewSet)
+router.register(r'accounts', AccountViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include(router.urls)),
+    path('account/', include(router.urls)),
 ]
