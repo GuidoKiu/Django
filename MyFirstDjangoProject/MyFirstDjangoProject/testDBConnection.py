@@ -2,9 +2,10 @@ import psycopg2
 
 try:
     connection = psycopg2.connect(
-        host="192.168.10.71",
+        # host="192.168.10.71",
+        host = "192.168.10.19",
         port="5432",
-        database="MyFirstDjangoProject",
+        database="Data2",
         user="postgres",
         password="indocyber"
     )
