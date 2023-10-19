@@ -13,3 +13,5 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
         blank=False
     )
+    def __str__(self):
+        return "{} {}".format(self.first_name, self.last_name)
