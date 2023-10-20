@@ -45,6 +45,11 @@ class AccViewSet(viewsets.ViewSet):
     def update_account(self, request):
         data = request.data
 
+        id_value = data.get('id')
+        if not (id_value and id_value.isnumeric()):
+            message = "Invalid ID value"
+            return Response({"message": message, "status": 0, "data": None})
+
         account = Account.objects.filter(pk=data['id']).first()
         if not account:
             message = "Account Not Found"
