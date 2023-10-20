@@ -62,8 +62,18 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
 
         serializer = self.get_serializer(profile, data=request.data)
+        # serializer = self.get_serializer(data=request.data)
+
 
         if serializer.is_valid():
+            # data = serializer.data
+            # profile.first_name = data.first_name 
+            # profile.last_name = data.last_name            
+            # profile.phone_number = data.phone_number            
+            # profile.date_of_birth = data.date_of_birth
+            # profile.account = data.account
+            # profile.save()
+
             serializer.save()
             return Response({
             "message"   : "Profile updated.",
