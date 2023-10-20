@@ -12,6 +12,8 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     pagination_class = StandardResultsPagination
 
+
+
     def retrieve(self, request, pk=None):
         profile = Profile.objects.filter(pk=pk).first()
         if not profile:
@@ -28,6 +30,8 @@ class ProfileViewSet(viewsets.ModelViewSet):
             "data"      : serializer.data
         })
     
+
+
     def create(self, request):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
@@ -44,6 +48,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
             "data"      : serializer.errors
         })
     
+
 
     def update(self, request, pk):
         profile = Profile.objects.filter(pk=pk).first()
@@ -91,7 +96,8 @@ class ProfileViewSet(viewsets.ModelViewSet):
             "data"      : None
             })
                 
-    
+
+
     @action(detail=False, methods=["get"])         
     def all(self, request):
     
@@ -107,7 +113,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
     
     
     
-
     @action(detail=False)
     def test_registered_phone_number(self, request):
 
@@ -122,4 +127,3 @@ class ProfileViewSet(viewsets.ModelViewSet):
         return Response({
             "message": "The phone number is not registered under any profile"
         })
-    
