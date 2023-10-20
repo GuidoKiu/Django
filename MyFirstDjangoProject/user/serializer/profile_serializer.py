@@ -8,6 +8,9 @@ def validate_date_of_birth(value):
     if value >= timezone.now().date():
         raise ValidationError('Date of birth must not be in the future.')
 
+def validate_unique_phone_numbers(value):
+    if Profile.objects.filter(phone_number=value).exists():
+        raise ValidationError("Phone number already registered under a profile.")
 
 class ProfileSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(
@@ -40,7 +43,9 @@ class ProfileSerializer(serializers.ModelSerializer):
     )
 
     date_of_birth = serializers.DateField(
-        validators=[validate_date_of_birth]
+        validators=[validate_date_of_birth,
+                    # validate_unique_phone_numbers
+                    ]
     )
 
     
