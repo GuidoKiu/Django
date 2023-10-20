@@ -14,6 +14,7 @@ def validate_unique_phone_numbers(value):
 
 class ProfileSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(
+        required=True,
         max_length=50,
         validators=[
             validators.RegexValidator(
@@ -25,6 +26,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     )
     
     last_name = serializers.CharField(
+        required=False,
         max_length=50,
         validators=[
             validators.MinLengthValidator(limit_value=2, message='Last name must be at least 2 characters long.'),
@@ -32,8 +34,10 @@ class ProfileSerializer(serializers.ModelSerializer):
     )
     
     phone_number = serializers.CharField(
+        required=False,
         max_length=20,
         validators=[
+            validate_unique_phone_numbers,
             validators.RegexValidator(
                 regex='^\d+$',
                 message='Phone number must contain only digits.',
@@ -43,9 +47,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     )
 
     date_of_birth = serializers.DateField(
-        validators=[validate_date_of_birth,
-                    # validate_unique_phone_numbers
-                    ]
+        required=False,
+        validators=[validate_date_of_birth]
     )
 
     
