@@ -11,7 +11,13 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
     @action(detail=False)
     def recent_profiles(self, request):
-        recent_profiles = Profile.objects.all().order_by("-account")   
+        recent_profiles = Profile.objects.all().order_by("-account")
+
+        page = self.paginate_queryset   
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        
         serializer = self.get_serializer(recent_profiles, many=True)
         return Response(serializer.data)
     
@@ -22,3 +28,5 @@ class ProfileViewSet(viewsets.ModelViewSet):
         return Response({
             "result": test
         })
+    
+    
