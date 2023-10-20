@@ -24,7 +24,7 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 
 def validate_date_of_birth(value):
-    if value >= timezone.now().date:
+    if value >= timezone.now().date():
         raise ValidationError('Date of birth must not be in the future.')
 
 
