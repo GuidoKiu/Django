@@ -1,3 +1,5 @@
+.vscode/**
+
 MyFirstDjangoProject/db.sqlite3
 MyFirstDjangoProject/.idea/**
 MyFirstDjangoProject/.vscode/**
