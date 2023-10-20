@@ -45,6 +45,11 @@ class AccViewSet(viewsets.ViewSet):
     def update_account(self, request):
         data = request.data
 
+        id_value = data.get('id')
+        if not (id_value and id_value.isnumeric()):
+            message = "Invalid ID value"
+            return Response({"message": message, "status": 0, "data": None})
+
         account = Account.objects.filter(pk=data['id']).first()
         if not account:
             message = "Account Not Found"
@@ -52,9 +57,9 @@ class AccViewSet(viewsets.ViewSet):
 
         serializer = AccountSerializer(data=data)
         if serializer.is_valid():
-            account.username = serializer.data.username,
-            account.email = serializer.data['email'],
-            account.password = serializer.data['password'],
+            account.username = serializer.data['username']
+            account.email = serializer.data['email']
+            account.password = serializer.data['password']
             account.save()
 
             serializer_out = AccountSerializerOut(account)
