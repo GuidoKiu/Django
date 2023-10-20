@@ -21,13 +21,24 @@ from rest_framework.routers import DefaultRouter
 from user.views import ProfileViewSet
 from user.views import AccountViewSet
 
+from user.viewset import AccViewSet
+
 router = DefaultRouter()
 router.register(r'profiles', ProfileViewSet)
 router.register(r'accounts', AccountViewSet)
 
+# account_list = AccViewSet.as_view({'get': 'get_accounts', 'post': 'add_account', })
+# account_list2 = AccViewSet.as_view({'get': 'get_account', 'put': 'update_account', 'delete': 'delete_account'})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include(router.urls)),
-    path('account/', include(router.urls)),
+    path("accounts/", AccViewSet.as_view({"get": "get_accounts"})),
+    path("accounts/info/<int:pk>/",
+         AccViewSet.as_view({"get": "get_account"})),
+    path("accounts/add/", AccViewSet.as_view({"post": "add_account"})),
+    path("accounts/update/",
+         AccViewSet.as_view({"put": "update_account"})),
+    path("accounts/delete/<int:pk>/",
+         AccViewSet.as_view({"delete": "delete_account"}))
 ]
