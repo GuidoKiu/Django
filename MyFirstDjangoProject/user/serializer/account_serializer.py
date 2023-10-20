@@ -29,9 +29,11 @@ def validate_password(value):
     error_messages = []
 
     if not re.search(r'[A-Z]', value):
-        error_messages.append("Password must contain at least one uppercase letter.")
+        error_messages.append(
+            "Password must contain at least one uppercase letter.")
     if not re.search(r'[a-z]', value):
-        error_messages.append("Password must contain at least one lowercase letter.")
+        error_messages.append(
+            "Password must contain at least one lowercase letter.")
     if not re.search(r'\d', value):
         error_messages.append("Password must contain at least one digit.")
     if not re.search(r'[!@#$%^&*(),.?":{}|<>]', value):
