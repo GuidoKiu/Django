@@ -14,3 +14,4 @@ MyFirstDjangoProject/model/__pycache__/**
 MyFirstDjangoProject/user/models/__pycache__/**
 MyFirstDjangoProject/user/serializer/__pycache__/**
 MyFirstDjangoProject/user/views/__pycache__/**
+MyFirstDjangoProject/user/viewset/__pycache__/**
