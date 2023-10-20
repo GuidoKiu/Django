@@ -1,24 +1,5 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 from rest_framework import serializers
-from .models import Profile
+from user.models.profile import Profile
 from django.core import validators
 from django.core.exceptions import ValidationError
 from django.utils import timezone
