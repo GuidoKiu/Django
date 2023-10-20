@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 from user.models import Account
+from user.models import Profile
 from user.serializer import AccountSerializerOut, AccountSerializer
 
 
@@ -19,8 +20,8 @@ class AccViewSet(viewsets.ViewSet):
         return Response({"message": message, "status": 1, "data": obj.data})
 
     def get_account(self, request, pk=None):
-        account = Account.objects.get(pk=pk)
-        if account is None:
+        account = Account.objects.filter(pk=pk).first()
+        if not account:
             message = "Account Not Found"
             return Response({"message": message, "status": 0, "data": None})
 
@@ -29,7 +30,7 @@ class AccViewSet(viewsets.ViewSet):
         return Response({"message": message, "status": 1, "data": obj.data})
 
     def add_account(self, request):
-        data = json.loads(request.body)
+        data = request.data
         serializer = AccountSerializer(data=data)
 
         if serializer.is_valid():
@@ -42,17 +43,21 @@ class AccViewSet(viewsets.ViewSet):
         return Response({"message": message, "status": 0, "data": serializer.errors})
 
     def update_account(self, request):
-        data = json.loads(request.body)
+        data = request.data
 
-        account = Account.objects.get(pk=data['id'])
+        account = Account.objects.filter(pk=data['id']).first()
         if not account:
             message = "Account Not Found"
             return Response({"message": message, "status": 0, "data": None})
 
         serializer = AccountSerializer(data=data)
         if serializer.is_valid():
-            instance = serializer.save()
-            serializer_out = AccountSerializerOut(instance)
+            account.username = serializer.data.username,
+            account.email = serializer.data['email'],
+            account.password = serializer.data['password'],
+            account.save()
+
+            serializer_out = AccountSerializerOut(account)
             message = "Account update successfully"
             return Response({"message": message, "status": 1, "data": serializer_out.data})
 
@@ -60,11 +65,11 @@ class AccViewSet(viewsets.ViewSet):
         return Response({"message": message, "status": 0, "data": serializer.errors})
 
     def delete_account(self, request, pk):
-        account = Account.objects.get(pk=pk)
+        account = Account.objects.filter(pk=pk).first()
         if not account:
             message = "Account Not Found"
-            return Response({"message": message, "status": 0, "data": None})
+            return Response({"message": message, "status": 0})
 
         account.delete()
         message = "Account deleted successfully"
-        return Response({"message": message, "status": 1, "data": None})
+        return Response({"message": message, "status": 1})
